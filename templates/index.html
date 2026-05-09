@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymProgress | Entrena amb intel·ligència</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        
+        <nav>
+            <a href="/">INICI</a>
+            <a href="/login">LOGIN</a>
+            <a href="/registre">REGISTRE</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>El teu perfil Fitness</h2>
+            <p style="color: #bbb; font-size: 0.9rem;">Introdueix les teves dades per generar un pla personalitzat a l'instant.</p>
+            
+            <form action="/generar-rutina" method="POST">
+                <label>Edat</label>
+                <input type="number" name="edat" placeholder="Ex: 25" required>
+                
+                <label>Sexe</label>
+                <select name="sexe">
+                    <option value="home">Home</option>
+                    <option value="dona">Dona</option>
+                    <option value="altre">Altre</option>
+                </select>
+                
+                <label>Pes actual (kg)</label>
+                <input type="number" name="pes" placeholder="Ex: 75.5" step="0.1" required>
+                
+                <button type="submit">Generar Pla d'Entrenament</button>
+            </form>
+
+            {% if rutina_generada %}
+            <div class="resultat">
+                <small>RUTINA RECOMANADA:</small>
+                <p style="font-size: 1.2rem; margin: 5px 0;">{{ rutina_generada }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <p>GYMPROGRESS &copy; 2026 | PUSH YOUR LIMITS</p>
+    </footer>
+
+</body>
+</html>

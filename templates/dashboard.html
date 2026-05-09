@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>GymProgress | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/dashboard">
+                <img src="{{ url_for('static', filename='img/gymprogress_logo.png') }}" alt="GymProgress" class="logo-img">
+            </a>
+        </div>
+        <nav>
+            <a href="/logout">Sortir</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card" style="text-align: center;">
+            <h2>Hola, {{ nom }}!</h2>
+            <p style="color: #888; font-size: 0.9rem; margin-bottom: 25px;">Què entrenarem avui?</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+                <a href="/perfil" class="button-link">PERFIL</a>
+                <a href="/rutines" class="button-link">RUTINES</a>
+                <a href="/exercicis" class="button-link">CATÀLEG</a>
+                <a href="/seguiment" class="button-link">SEGUIMENT</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>GYMPROGRESS &copy; 2026</p>
+    </footer>
+</body>
+</html>

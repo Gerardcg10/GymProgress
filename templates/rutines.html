@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>GymProgress | Rutines</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/dashboard">
+                <img src="{{ url_for('static', filename='img/gymprogress_logo.png') }}" alt="GymProgress Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <nav>
+            <a href="/dashboard">DASHBOARD</a>
+            <a href="/logout">SORTIR</a>
+        </nav>
+    </header>
+
+    <main style="max-width: 600px;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="card">
+            <h2>Nova Rutina Manual</h2>
+            <form action="/crear-rutina" method="POST">
+                <input type="text" name="nom_rutina" placeholder="Ex: Empenta matinal" required>
+                {% for i in range(5) %}
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; margin-top: 10px;">
+                    <select name="exercici_id">
+                        <option value="">-- Selecciona --</option>
+                        {% for ex in cataleg %}
+                        <option value="{{ ex.id }}">{{ ex.nom }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="series" placeholder="S">
+                    <input type="number" name="reps" placeholder="R">
+                </div>
+                {% endfor %}
+                <button type="submit">Guardar Rutina</button>
+            </form>
+        </div>
+
+        <h2 style="text-align: center; margin-top: 30px;">Les meves Rutines</h2>
+        {% for item in rutines %}
+        <div class="card" style="border-left: 4px solid var(--groc);">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 style="margin: 0;">{{ item.info.nom }}</h3>
+                <form action="/eliminar-rutina/{{ item.info.id }}" method="POST" onsubmit="return confirm('Eliminar rutina?');">
+                    <button type="submit" style="background: none; color: #e74c3c; width: auto; padding: 0;">[X]</button>
+                </form>
+            </div>
+            <ul style="padding-left: 15px; margin-top: 10px;">
+                {% for ex in item.exercicis %}
+                <li>{{ ex.nom }} ({{ ex.series }}x{{ ex.repeticions }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

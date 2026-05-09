@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>GymProgress | Perfil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/dashboard">
+                <img src="{{ url_for('static', filename='img/gymprogress_logo.png') }}" alt="GymProgress Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <nav>
+            <a href="/dashboard">DASHBOARD</a>
+            <a href="/logout">SORTIR</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>El meu Perfil</h2>
+            <form action="/generar-rutina" method="POST">
+                <label>Edat</label>
+                <input type="number" name="edat" value="{{ dades.edat or '' }}" required>
+                <label>Pes (kg)</label>
+                <input type="number" step="0.1" name="pes" value="{{ dades.pes or '' }}" required>
+                <label>Sexe</label>
+                <select name="sexe">
+                    <option value="Home" {% if dades.sexe == 'Home' %}selected{% endif %}>Home</option>
+                    <option value="Dona" {% if dades.sexe == 'Dona' %}selected{% endif %}>Dona</option>
+                </select>
+                <button type="submit">Actualitzar i Generar Rutina ⚡</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,107 @@
+:root {
+    --groc: #ccff00;
+    --negre: #121212;
+    --gris-fosc: #1e1e1e;
+    --gris-llum: #333333;
+    --blanc: #ffffff;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--negre);
+    color: var(--blanc);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* HEADER AMB LOGO */
+header {
+    background-color: var(--negre);
+    padding: 2rem 1rem;
+    text-align: center;
+    border-bottom: 2px solid var(--groc);
+}
+
+.logo-container {
+    margin-bottom: 15px;
+}
+
+.logo-img {
+    max-width: 180px; /* Ajusta segons el disseny del teu logo */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+header h1 { 
+    margin: 10px 0 0 0; 
+    color: var(--groc); 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    font-size: 1.5rem;
+}
+
+nav { margin-top: 15px; }
+nav a { color: var(--blanc); text-decoration: none; margin: 0 10px; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
+nav a:hover { color: var(--groc); }
+
+/* CONTENIDOR PRINCIPAL */
+main { max-width: 450px; margin: 30px auto; padding: 0 20px; }
+
+.card {
+    background-color: var(--gris-fosc);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+}
+
+h2 { color: var(--groc); margin-top: 0; font-size: 1.3rem; }
+
+label { display: block; margin-top: 10px; font-size: 0.8rem; color: #888; }
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: var(--gris-llum);
+    border: 1px solid var(--gris-llum);
+    border-radius: 6px;
+    color: white;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--groc);
+    color: var(--negre);
+    border: none;
+    border-radius: 6px;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button-link {
+    display: block;
+    background-color: var(--gris-llum);
+    color: var(--groc);
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 1px solid var(--groc);
+    text-align: center;
+}
+
+.button-link:hover { background-color: var(--groc); color: var(--negre); }
+
+/* FEEDBACK UX */
+.flash-message { padding: 12px; border-radius: 6px; margin-bottom: 15px; text-align: center; font-weight: bold; font-size: 0.9rem; }
+.flash-message.success { background-color: #2ecc71; color: white; }
+.flash-message.error { background-color: #e74c3c; color: white; }
+.flash-message.warning { background-color: #f1c40f; color: #333; }
+
+footer { text-align: center; font-size: 0.7rem; color: #444; margin: 40px 0; }

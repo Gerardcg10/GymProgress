@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>GymProgress | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='img/gymprogress_logo.png') }}" alt="GymProgress" class="logo-img">
+        </div>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="card">
+            {% if mode == 'login' %}
+                <h2>Entrar</h2>
+                <form action="/login" method="POST">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Contrasenya" required>
+                    <button type="submit">Entrar</button>
+                </form>
+                <p style="text-align: center; margin-top: 15px; font-size: 0.8rem;">
+                    No tens compte? <a href="/?mode=registre" style="color: var(--groc);">Crea'n un</a>
+                </p>
+            {% else %}
+                <h2>Registre</h2>
+                <form action="/registre" method="POST">
+                    <!-- NOU CAMP NOM -->
+                    <input type="text" name="nom" placeholder="El teu nom" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Contrasenya" required>
+                    <button type="submit">Registrar-se</button>
+                </form>
+                <p style="text-align: center; margin-top: 15px; font-size: 0.8rem;">
+                    Ja tens compte? <a href="/?mode=login" style="color: var(--groc);">Inicia sessió</a>
+                </p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

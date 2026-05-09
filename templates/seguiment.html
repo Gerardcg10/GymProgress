@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>GymProgress | Seguiment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/dashboard">
+                <img src="{{ url_for('static', filename='img/gymprogress_logo.png') }}" alt="GymProgress Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <nav>
+            <a href="/dashboard">DASHBOARD</a>
+            <a href="/logout">SORTIR</a>
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="card">
+            <h2>Registrar Activitat</h2>
+            <form action="/registrar-entrenament" method="POST">
+                <select name="rutina_id" required>
+                    <option value="">-- Tria rutina --</option>
+                    {% for r in rutines %}
+                    <option value="{{ r.id }}">{{ r.nom }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Marcar com feta ✅</button>
+            </form>
+        </div>
+
+        <h2 style="text-align: center; margin-top: 30px;">Historial Recent</h2>
+        <div class="card">
+            {% for ent in historial %}
+            <div style="padding: 10px 0; border-bottom: 1px solid #333;">
+                <strong style="color: var(--groc);">{{ ent.rutina_nom }}</strong>
+                <p style="margin: 0; font-size: 0.8rem; color: #666;">{{ ent.data }}</p>
+            </div>
+            {% else %}
+            <p style="text-align: center; color: #666;">No hi ha registres.</p>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
